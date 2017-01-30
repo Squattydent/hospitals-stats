@@ -46,7 +46,7 @@ function get_app(settings) {
   app.use('/models_api', routes_models_api);
   app.use('/migrations', routes_migrations);
   app.use('', routes_shortcuts);
-  app.use(express.static(path.join(__dirname, '../frontend/dist')));
+  app.use(express.static(path.join(__dirname, './frontend/dist')));
 
   // catch 404 and forward to error handler
   app.use(function (req, res, next) {
