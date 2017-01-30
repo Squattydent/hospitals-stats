@@ -1,0 +1,20 @@
+.map-container {
+  display: inline-block;
+}
+
+.map-legend-item {
+  border-left: 20px solid;
+  /*border-top: 1px solid;*/
+  /*border-bottom: 1px solid;*/
+  /*border-right: 1px solid;*/
+  padding: 0 5px;
+}
+
+.map-legend-item:first-of-type {
+  border-top: 2px solid;
+  border-radius: 15px 0 0 0;
+}
+.map-legend-item:last-of-type {
+  border-radius: 0 0 0 15px;
+  border-bottom: 2px solid;
+}

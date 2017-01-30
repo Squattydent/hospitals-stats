@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3">
+      <div v-for="(zip_info, zip_info_id) in show_zips_infos" class="map-legend-item" v-bind:style="'border-color: ' + colors_by_zip_info_index[zip_info_id] + ';'">{{zip_info.zip}}: {{zip_info.value}}</div>
+    </div>
+    <div class="col-sm-9">
+      <div id="map" style="position: relative;overflow: hidden;width: 500px;height: 500px;"></div>
+    </div>
+  </div>
+</div>

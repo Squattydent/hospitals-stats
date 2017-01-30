@@ -1,0 +1,155 @@
+<div id="app">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="index.html" class="site_title"><i class="fa fa-plus-circle"></i> <span>Hospitals Stats</span></a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- menu profile quick info -->
+          <div class="profile clearfix">
+            <div class="profile_info">
+              <span>Welcome,</span>
+              <h2>Hospital Owner</h2>
+            </div>
+          </div>
+          <!-- /menu profile quick info -->
+
+          <br/>
+
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <h3>Profile</h3>
+              <ul class="nav side-menu">
+                <li><a><i class="fa fa-gear"></i> Settings</a></li>
+                <li><a><i class="fa fa-sign-out"></i> Logout</a></li>
+              </ul>
+            </div>
+            <div class="menu_section">
+              <h3>General Tools</h3>
+              <ul class="nav side-menu">
+                <li><a><i class="fa fa-home"></i> Top 75% Discharges</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- /sidebar menu -->
+
+        </div>
+      </div>
+
+      <!-- top navigation -->
+      <div class="top_nav">
+        <div class="nav_menu">
+          <nav>
+            <ul class="nav navbar-nav navbar-right">
+              <li class=""><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
+              <li class=""><a href="#"><i class="fa fa-info-circle"></i> About</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- /top navigation -->
+
+      <!-- page content -->
+      <div class="right_col" role="main">
+
+        <!-- TODO: Separate into pages components -->
+        <h3>Top 75% Discharges</h3>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2><i class="fa fa-bars"></i> Follow Steps to see the Discharges Map</h2>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                  <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                    <li role="presentation" class="" v-bind:class="{'active': current_tab==='input-csv'}"><a href="#" v-on:click.prevent="switchTab('input-csv')">Input CSV data</a>
+                    </li>
+                    <li role="presentation" class="" v-bind:class="{'active': current_tab==='options'}"><a href="#" v-on:click.prevent="switchTab('options')">See 75% options on the
+                      map</a>
+                    </li>
+                  </ul>
+                  <div id="myTabContent" class="tab-content">
+                    <div v-if="current_tab==='input-csv'" role="tabpanel" class="tab-pane active">
+                      <div class="container-fluid">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            Raw CSV data
+                          </div>
+                          <div class="col-sm-6">
+                            Processed CSV data
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <textarea v-model="csv_data" style="width: 100%; height:400px;"></textarea>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="csv__processed-items">
+                              <div v-for="item in data_table"
+                                   v-bind:class="{'csv__processed-items__item--active': item.include_to_top}" class="csv__processed-items__item">
+                                {{item.zip}}: {{item.discharges}} ({{Math.round(item.discharges_percentage*100)/100}}%,
+                                {{Math.round(item.discharges_percentage_acc*100)/100}}%)
+                                <!--{{item.include_to_top ? 'TOP' : 'bottom'}})-->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div v-if="current_tab==='options'" role="tabpanel" class="tab-pane active">
+                      <div class="container-fluid">
+                        <div class="row">
+                          <div class="col-sm-4">
+                            Select the optional ZIP
+                            </div>
+                          <div class="col-sm-8 text-center">
+                            Top 75% Discharges map
+                            </div>
+                          </div>
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <select v-model="selected_option_index" class="options-items" size="5">
+                              <option v-bind:value="null">None</option>
+                              <option v-for="(option, option_index) in options_list" v-bind:value="option_index">
+                                {{option_index}}.
+                                {{option.zip}}: {{option.discharges}} ({{option.discharges_percentage}})
+                              </option>
+                            </select>
+                          </div>
+                          <div class="col-sm-8">
+                            <colored-map v-bind:show_zips_infos="data_table.filter(function(item){return item.include_to_top})"></colored-map>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /page content -->
+
+      <!-- footer content -->
+      <footer>
+        <div class="pull-right">
+          2017 &copy; Hospitals Stats. Carnahan Group
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      <!-- /footer content -->
+    </div>
+  </div>
+
+</div>

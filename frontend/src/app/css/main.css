@@ -1,0 +1,19 @@
+.step-container {
+  vertical-align: middle;
+  display: inline-block;
+  max-height: 100vh;
+  overflow: scroll;
+}
+
+/*.tab-container {height: 400px;}*/
+
+.csv__raw-data {width: 100%; height:400px;}
+.csv__processed-items {width: 100%; height:400px; overflow: auto;}
+
+.csv__processed-items__item {}
+
+.csv__processed-items__item--active {
+  background: yellow;
+}
+
+.options-items {width: 100%;}
