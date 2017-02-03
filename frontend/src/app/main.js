@@ -3,6 +3,11 @@ const extractDataTableFromCSV = require('./tools/extract_data_table_from_csv');
 const sub_zips_mapping = require('./sub_zips_mapping');
 let sample_data = require('./sample_data');
 
+const BackendGraphAPIClient = require('./apis_clients/backend_graph_api_client');
+
+window.backend_graph_api_client = new BackendGraphAPIClient();
+window.backend_graph_api_client.init('http://127.0.0.1:5000/get_settings');
+
 export default {
   components: {
     'colored-map': require('./components/colored_map/main.vue')

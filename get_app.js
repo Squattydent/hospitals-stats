@@ -16,9 +16,15 @@ function get_app(settings) {
   app.settings = settings;
   app.graph = new Graph(app.settings);
   app.graph.register_all_models("./models/");
-  
+
   // app.use(logger('dev'));
 
+// CORS fix for hot reloading
+  app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
   app.use(bodyParser.urlencoded({extended: false}));
   app.use(bodyParser.json());
   app.use(cookieParser());
@@ -36,12 +42,12 @@ function get_app(settings) {
           req.user = user;
           next()
         })
-        .catch(function(e){
+        .catch(function (e) {
           next(e);
         });
     }
   });
-  
+
   app.use('/get_settings', routes_get_settings);
   app.use('/models_api', routes_models_api);
   app.use('/migrations', routes_migrations);

@@ -15,6 +15,7 @@ function has_perms(user, obj, call_params_with_req, perms_list) {
 
 router.post('/:model_name/:type/:method', function (req, res, next) {
   var source = req.body;
+  console.log(source);
   if (!source.hasOwnProperty("params")){
     source = req.query;
     if (source["params"]) source["params"] = JSON.parse(source["params"]);

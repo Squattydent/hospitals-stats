@@ -49,7 +49,7 @@ ret.PASSWORD_SALT = get_env("PASSWORD_SALT", 'PASSWORD_SALT');
 
 // APPLICATION CLIENT
 ret.CLIENT = {};
-ret.CLIENT.SERVER_ROOT_URI = get_env("CLIENT_SERVER_ROOT_URI", '/');
+ret.CLIENT.SERVER_ROOT_URI = get_env("CLIENT_SERVER_ROOT_URI", 'http://127.0.0.1:5000/');
 ret.CLIENT.MODELS_URI_PATH = get_env("CLIENT_MODELS_URI_PATH", 'models_api/{{model_name}}/{{call_type}}/{{method}}');
 
 ret.default_env_text = default_env_text;

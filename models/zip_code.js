@@ -6,25 +6,49 @@ var sha1 = require('sha1');
 var Promise = require("bluebird");
 
 
+// var GeometrySchema = new mongoose.Schema({ set : [{type: String, trim: true}] })
+
 var name = "ZipCode";
 var fields = {
   zip: {
     type: String, // Can't be Number, cause there are 123XX and 123HH zips (for water and uninhabited terrain)
     default: ""
   },
-  geometry: {
-    text: {
-      type: String,
-      default: ""
+  geometries: {
+    type: [{ // list of geometries
+      border_rings: {
+        type: [{ // list of LinearRings, first is outer border, others are inner borders
+          type: String,
+          default: ""
+        }],
+        default: function () {
+          return [];
+        }
+      }
+    }],
+    default: function () {
+      return [];
     }
   },
-  population: {
+  area: {
     type: Number,
     default: 0
   },
-  household_income: {
+  perimeter: {
     type: Number,
     default: 0
+  },
+  population: {
+    y_2010: { // Add other years same way
+      type: Number,
+      default: -1
+    }
+  },
+  median_household_income: {
+    y_2010: { // Add other years same way
+      type: Number,
+      default: -1
+    }
   }
 };
 

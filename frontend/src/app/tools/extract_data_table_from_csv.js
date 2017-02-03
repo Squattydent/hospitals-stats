@@ -14,7 +14,7 @@ function extractDataTableFromCSV(csv_data) { // TODO: make more flexible, probab
         continue;
       }
       let line_arr = line.split(';');
-      ret.push({zip: parseInt(line_arr[0]), discharges: parseInt(line_arr[1])});
+      ret.push({zip: line_arr[0], discharges: parseInt(line_arr[1])});
     }
   }
   return ret;
