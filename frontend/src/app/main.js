@@ -6,7 +6,11 @@ let sample_data = require('./sample_data');
 const BackendGraphAPIClient = require('./apis_clients/backend_graph_api_client');
 
 window.backend_graph_api_client = new BackendGraphAPIClient();
-window.backend_graph_api_client.init('http://127.0.0.1:5000/get_settings');
+let settings_path = '/get_settings';
+if (window.location.href.indexOf('127.0.0.1') !== -1 || window.location.href.indexOf('localhost') !== -1) {
+  settings_path = 'http://127.0.0.1:5000/get_settings';
+}
+window.backend_graph_api_client.init(settings_path);
 
 export default {
   components: {
